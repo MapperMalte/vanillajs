@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Table example</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../style/styles.css">
+        <link rel="stylesheet" type="text/css" href="../style/grid.css">
+    </head>
+    <body>
+       
+        <div id="header"></div>
+        <div class="center">
+            <h3>Tabelle</h3>
+            <div id="table"></div>
+            <div id="calculate-button"></div>
+        </div>
+    </body>
+</html>
+
+<script src="../domsurgeon.js"></script>
+<script src="../provider.js"></script>
+<script src="../state.js"></script>
+<script src="../components/textbutton.js"></script>
+<script src="../components/table.js"></script>
+<script src="../components/header.js"></script>
+<script src="../components/form.js"></script>
+<script src="my_navbar.js"></script>
+
+<script>
+
+const domSurgeon = new DOMSurgeon(document);
+const tableState = State.of('safe-cap-table');
+
+tableState.observe((data) => {
+    const tableElement = new Table('myTable', data, (cellData, rowIndex, columnIndex) => {
+        const cell = document.createElement('div');
+        cell.classList.add('table-cell');
+        cell.textContent = cellData;
+        return cell;
+    });
+    domSurgeon.updateElement('#table',tableElement);
+});
+
+tableState.setState([
+  ['Series A Höhe', 'Header 2', 'Header 3',],
+  ['John', '25', 'USA'],
+  ['Alice', '30', 'Canada'],
+  ['Bob', '22', 'UK'],
+]);
+
+
+domSurgeon.insertElement('#calculate-button',new TextButton("Add blablabla", () => {
+    let bla = tableState.state;
+    bla.push(['bla','bla','bla']);
+    tableState.setState(bla);
+}, 'calculate-button'));
+
+domSurgeon.insertElement('#header',MyNavbar.build());
+
+</script>

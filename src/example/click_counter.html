@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Clickcounter Vanilla</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../style/styles.css">
+        <link rel="stylesheet" type="text/css" href="../style/grid.css">
+    </head>
+    <body>
+        <div id="header"></div>
+        <div class="center">
+            <div class="col-6 form-card row-5">
+                <div class="row-4">
+                    <div id="label"></div>
+                </div>
+                <div class="center col-5 gap-row-4">
+                    <div id="textbutton"></div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+<script src="../domsurgeon.js"></script>
+<script src="../provider.js"></script>
+<script src="../state.js"></script>
+<script src="../components/textbutton.js"></script>
+<script src="../components/header.js"></script>
+<script src="../components/text.js"></script>
+<script src="my_navbar.js"></script>
+
+<script>
+    const domSurgeon = new DOMSurgeon(document);
+    const clickCountState = State.of('clickcounter');
+    
+    const onClick = function(){
+        clickCountState.setState(clickCountState.state + 1);
+    };
+    
+    clickCountState.observe((newState) => {
+        domSurgeon.updateElement('#label', new Text(
+            "Das Observer-Pattern eignet sich exzellent für State-Management ("+newState.toString()+" mal geklickt.)", 'label'
+        ));
+    });
+    clickCountState.observe((newState) => {
+        domSurgeon.updateElement('#textbutton', new TextButton(
+            "Hallo Welt "+newState.toString(), onClick, 'textbutton'
+        ));
+    });
+    
+    clickCountState.setState(0);
+    
+    domSurgeon.insertElement('#header',MyNavbar.build());
+</script>

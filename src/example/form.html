@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../style/styles.css">
+        <link rel="stylesheet" type="text/css" href="../style/grid.css">
+    </head>
+    <body>
+        <div id="header"></div>
+        <div class="row-2"></div>
+        <div class="center-horizontally col-7">
+            <div id="form-container"></div>
+        </div>
+    </body>
+</html>
+
+
+<script src="../domsurgeon.js"></script>
+<script src="../provider.js"></script>
+<script src="../state.js"></script>
+<script src="../components/textbutton.js"></script>
+<script src="../components/table.js"></script>
+<script src="../components/header.js"></script>
+<script src="../components/form.js"></script>
+<script src="my_navbar.js"></script>
+
+<script>
+
+const domSurgeon = new DOMSurgeon(document);
+
+const form = new Form('form-container',domSurgeon);
+    form.addFormItem('Username', 'text', (value) => ({
+      valid: value.length >= 10,
+      errormsg: value.length >= 10 ? '' : 'Username must be at least 5 characters long'
+    }));
+    form.addFormItem('Email', 'email', (value) => ({
+      valid: /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(value),
+      errormsg: /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(value) ? '' : 
+              'Invalid email format'
+    }));
+    form.addFormItem('Birthdate', 'date', (value) => ({
+      valid: (value !== null), // Add your validation logic for the birthdate here
+      errormsg: '' // Error message for birthdate validation
+    }));
+
+    // Add Password field (password type)
+    form.addFormItem('Password', 'password', (value) => ({
+      valid: value.length >= 8, // Add your validation logic for the password here
+      errormsg: value.length >= 8 ? '' : 'Password must be at least 8 characters long'
+    }));
+form.setTitle('Account erstellen');
+form.setSubmitButtonText('Account erstellen');
+domSurgeon.insertElement('#form-container',form);
+  
+domSurgeon.insertElement('#header',MyNavbar.build());
+
+
+</script>

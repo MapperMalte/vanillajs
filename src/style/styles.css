@@ -1,0 +1,171 @@
+:root {
+  /* Colors */
+  --tasty-purple: #6a3093;
+  --juicy-purple: #a044ff; /* Juicy Purple */
+  --dark-purple: #4f1771;  /* Dark Purple */
+  
+  --viridian-dark: #227366;
+
+  --shiny-cyan: #00A0B0;
+  --upbeat-yellow: #FFD100;
+  
+  --upbeat-light-blue: #77D8D8;
+  --warm-orange: #FF6B35;
+  --signal-white: #F0F0F0;
+  --raven-black: #080808;
+  --haute-skin: #FFDAB9;
+  --ruby-red: #E0115F; 
+  
+  --juicy-green: #007800;
+  --neon-green: #00FF00;
+
+  /* Gradients and Shading */
+  --header-gradient: linear-gradient(
+    to bottom, 
+    var(--juicy-purple),   /* Juicy Purple (Top) */
+    var(--tasty-purple)   /* Tasty Purple (Middle) */
+  );
+
+  /* Typography and Buttons */
+  --title: #333;
+  --button-color: var(--tasty-purple);
+  --button-hover-color: var(--dark-purple);
+
+  /* Validation Colors */
+  --error-color: var(--tasty-purple); /* Default error color */
+  --success-color: var(--juicy-green); /* Default success color */
+}
+
+/* Global Styles */
+body, header {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial';
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.center-horizontally {
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+/* Header Styles */
+header {
+  background: var(--header-gradient);
+  text-align: right;
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+  align-items: center;
+  height: 85px;
+}
+
+header img {
+  max-width: 100px;
+  height: auto;
+  margin-right: 20px;
+}
+
+header nav {
+  margin-left: auto;
+}
+
+header a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 25px;
+  letter-spacing: 2px;
+}
+
+header a:hover {
+  text-decoration: underline;
+}
+
+/* Form Card Styles */
+.form-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  margin: 0 auto;
+  width: 100%;
+  padding: 20px;
+}
+
+.form-card input,
+.form-card button {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 11px;
+}
+
+.form-card .title {
+  padding-top: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+.form-card h2 {
+  color: var(--tasty-purple);
+}
+
+.form-card button {
+  background-color: var(--button-color);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 18px;
+  margin-top: 28px;
+}
+
+.form-card button:hover {
+  background-color: var(--button-hover-color);
+}
+
+/* Table Styles */
+th, tr {
+  width: 200px;
+  text-align: left;
+}
+
+/* Text Button Styles */
+.text-button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  background-color: var(--button-color);
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.text-button:hover {
+  background-color: var(--button-hover-color);
+}
+
+/* Input Validation Styles */
+.valid-input,
+.invalid-input {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.valid-input {
+  color: var(--success-color); /* Use success color */
+}
+
+.invalid-input {
+  color: var(--error-color); /* Use error color */
+}

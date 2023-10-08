@@ -1,0 +1,163 @@
+/* Define custom properties for column and row widths */
+:root {
+  --golden-progression-1: 20px;
+  --golden-progression-2: 33px;
+  --golden-progression-3: 53px;
+  --golden-progression-4: 86px;
+  --golden-progression-5: 140px;
+  --golden-progression-6: 227px;
+  --golden-progression-7: 367px;
+  --golden-progression-8: 594px;
+  --golden-progression-9: 965px;
+  --golden-progression-10: 1553px;
+}
+/* Gap classes for columns */
+.gap-col-1 {
+  padding-left: var(--golden-progression-1);
+}
+
+.gap-col-2 {
+  padding-left: var(--golden-progression-2);
+}
+
+.gap-col-3 {
+  padding-left: var(--golden-progression-3);
+}
+
+.gap-col-4 {
+  padding-left: var(--golden-progression-4);
+}
+
+.gap-col-5 {
+  padding-left: var(--golden-progression-5);
+}
+
+.gap-col-6 {
+  padding-left: var(--golden-progression-6);
+}
+
+.gap-col-7 {
+  padding-left: var(--golden-progression-7);
+}
+
+.gap-col-8 {
+  padding-left: var(--golden-progression-8);
+}
+
+.gap-col-9 {
+  padding-left: var(--golden-progression-9);
+}
+
+/* Gap classes for rows */
+.gap-row-1 {
+  padding-top: var(--golden-progression-1);
+}
+
+.gap-row-2 {
+  padding-top: var(--golden-progression-2);
+}
+
+.gap-row-3 {
+  padding-top: var(--golden-progression-3);
+}
+
+.gap-row-4 {
+  padding-top: var(--golden-progression-4);
+}
+
+.gap-row-5 {
+  padding-top: var(--golden-progression-5);
+}
+
+.gap-row-6 {
+  padding-top: var(--golden-progression-6);
+}
+
+.gap-row-7 {
+  padding-top: var(--golden-progression-7);
+}
+
+.gap-row-8 {
+  padding-top: var(--golden-progression-8);
+}
+
+.gap-row-9 {
+  padding-top: var(--golden-progression-9);
+}
+
+/* Define classes for columns */
+.col-1 {
+  width: var(--golden-progression-1);
+}
+
+.col-2 {
+  width: var(--golden-progression-2);
+}
+
+.col-3 {
+  width: var(--golden-progression-3);
+}
+
+.col-4 {
+  width: var(--golden-progression-4);
+}
+
+.col-5 {
+  width: var(--golden-progression-5);
+}
+
+.col-6 {
+  width: var(--golden-progression-6);
+}
+
+.col-7 {
+  width: var(--golden-progression-7);
+}
+
+.col-8 {
+  width: var(--golden-progression-8);
+}
+
+.col-9 {
+  width: var(--golden-progression-9);
+}
+
+.col-10 {
+  width: var(--golden-progression-10);
+}
+/* Define classes for rows */
+.row-1 {
+  height: var(--golden-progression-1);
+}
+
+.row-2 {
+  height: var(--golden-progression-2);
+}
+
+.row-3 {
+  height: var(--golden-progression-3);
+}
+
+.row-4 {
+  height: var(--golden-progression-4);
+}
+
+.row-5 {
+  height: var(--golden-progression-5);
+}
+
+.row-6 {
+  height: var(--golden-progression-6);
+}
+
+.row-7 {
+  height: var(--golden-progression-7);
+}
+
+.row-8 {
+  height: var(--golden-progression-8);
+}
+
+.row-9 {
+  height: var(--golden-progression-9);
+}
