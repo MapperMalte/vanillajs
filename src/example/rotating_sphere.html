@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Points on a Sphere</title>
+    <style>
+        canvas {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="sphereCanvas" width="600" height="600" style="position: absolute; left: 300px;"></canvas>
+    <script>
+        function createTransformationMatrix(tx, ty, tz, theta, phi, psi, f) {
+            const cosTheta = Math.cos(theta);
+            const sinTheta = Math.sin(theta);
+            const cosPhi = Math.cos(phi);
+            const sinPhi = Math.sin(phi);
+            const cosPsi = Math.cos(psi);
+            const sinPsi = Math.sin(psi);
+
+            const cosThetaCosPhi = cosTheta * cosPhi;
+            const cosThetaSinPhi = cosTheta * sinPhi;
+            const sinThetaCosPhi = sinTheta * cosPhi;
+            const sinThetaSinPhi = sinTheta * sinPhi;
+            const cosPsiSinPhi   = cosPsi * sinPhi;
+            
+            const cosThetaSinPsiSinPhi = cosTheta * sinPsi * sinPhi;
+            const sinThetaSinPsiSinPhi = sinTheta * sinPsi * sinPhi;
+
+            return function(x, y, z) {
+                const xTransformed = 
+                         
+                        (cosThetaCosPhi * x 
+                        + (cosThetaSinPsiSinPhi - sinTheta * cosPsi) * y 
+                        + (cosTheta * cosPsiSinPhi + sinTheta * sinPsi) * z 
+                        + tx);
+                const yTransformed = 
+                         
+                        (sinThetaCosPhi * x + 
+                        (sinThetaSinPsiSinPhi + cosTheta * cosPsi) * y + 
+                        (sinTheta * cosPsiSinPhi - cosTheta * sinPsi) * z + 
+                        ty);
+                return [xTransformed/f, yTransformed/f];
+
+            };
+        }
+
+        function samplePointsOnSphere(radius, numSamples) {
+            const samples = [];
+
+            for (let i = 0; i < numSamples; i++) {
+                // Generate random spherical coordinates
+                const theta = Math.random() * 2 * Math.PI; // azimuthal angle
+                const phi = Math.acos(2 * Math.random() - 1); // polar angle
+
+                // Convert spherical coordinates to Cartesian coordinates
+                const x = radius * Math.sin(phi) * Math.cos(theta);
+                const y = radius * Math.sin(phi) * Math.sin(theta);
+                const z = radius * Math.cos(phi);
+
+                samples.push({ x, y, z });
+            }
+
+            return samples;
+        }
+
+        function drawPointsOnCanvas(canvas, points) {
+            const ctx = canvas.getContext('2d');
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (const point of points) {
+                const [x,y] = point;
+                ctx.beginPath();
+                ctx.arc(x, y, 1, 1, 2 * Math.PI);
+                ctx.fillStyle = 'black';
+                ctx.fill();
+            }
+        }
+        
+        const sphereRadius = 500;
+        const numSphereSamples = 65000;
+        const sampledPointsOnSphere = samplePointsOnSphere(sphereRadius, numSphereSamples);
+        
+        let angle = 0.00000001;
+        let angle2 = 0.1;
+        
+        function updateCanvas() {
+            const canvas = document.getElementById('sphereCanvas');
+            let camera = createTransformationMatrix(850,850,50,angle,angle2,angle,3);
+            angle += 0.01;
+            if ( angle > 10 ) angle2 += 0.002;
+            
+            let transformedPoints = sampledPointsOnSphere.map((samplePoint) => {
+                const {x, y, z} = samplePoint;
+                return camera(x,y,z);
+            });
+
+            drawPointsOnCanvas(canvas, transformedPoints);
+        }
+
+        // Start a timer to update the canvas every 0.1 seconds
+        setInterval(updateCanvas, 100);
+        
+    </script>
+</body>
+</html>

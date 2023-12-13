@@ -37,7 +37,7 @@ const domSurgeon = new DOMSurgeon(document);
 const form = new Form('form-container',domSurgeon);
     form.addFormItem('Username', 'text', (value) => ({
       valid: value.length >= 10,
-      errormsg: value.length >= 10 ? '' : 'Username must be at least 5 characters long'
+      errormsg: value.length >= 10 ? '' : 'Username must be at least 10 characters long'
     }));
     form.addFormItem('Email', 'email', (value) => ({
       valid: /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(value),
@@ -57,6 +57,11 @@ const form = new Form('form-container',domSurgeon);
 form.setTitle('Account erstellen');
 form.setSubmitButtonText('Account erstellen');
 domSurgeon.insertElement('#form-container',form);
+
+
+
+
+
   
 domSurgeon.insertElement('#header',MyNavbar.build());
 

@@ -32,7 +32,7 @@
   --button-hover-color: var(--dark-purple);
 
   /* Validation Colors */
-  --error-color: var(--tasty-purple); /* Default error color */
+  --error-color: var(--ruby-red); /* Default error color */
   --success-color: var(--juicy-green); /* Default success color */
 }
 
@@ -167,5 +167,5 @@ th, tr {
 }
 
 .invalid-input {
-  color: var(--error-color); /* Use error color */
+  color: var(--warm-orange); /* Use error color */
 }
